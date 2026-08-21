@@ -1,0 +1,50 @@
+name: Deploy JXXZY Website (legacy, manual only)
+
+on:
+  workflow_dispatch:
+
+# Automatic deployment is handled by pages.yml. This manual workflow remains
+# available only as a fallback, avoiding two competing deployments per push.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Prepare public site
+        run: |
+          mkdir _site
+          rsync -a \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude '.vscode/' \
+            --exclude '_site/' \
+            --exclude 'README.md' \
+            --exclude 'assets/*.dxv' \
+            --exclude 'assets/JXXZY LOGO V1.jpg' \
+            --exclude 'assets/jxxzy-logo-brand.mp4' \
+            --exclude 'assets/jxxzy-logo-brand.webm' \
+            --exclude 'assets/jxxzy-logo-brand-alpha.webm' \
+            --exclude 'assets/jxxzy-logo-wallpaper-mobile.webm' \
+            ./ _site/
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

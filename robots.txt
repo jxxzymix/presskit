@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jxxzymix.github.io/presskit/sitemap.xml

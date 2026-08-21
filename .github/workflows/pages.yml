@@ -1,0 +1,49 @@
+name: Deploy JXXZY to GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Verify deployment payload
+        run: |
+          test -f index.html
+          test -f epk.html
+          test -f assets/jxxzy-logo-navbar-alpha.webm
+          test -f assets/JXXZY_PRESSKIT_2026_PERFORMANCE_PHOTO_FINAL.pdf
+      - name: Prepare public site
+        run: |
+          mkdir _site
+          rsync -a \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude '.vscode/' \
+            --exclude '_site/' \
+            --exclude 'README.md' \
+            --exclude 'assets/*.dxv' \
+            --exclude 'assets/JXXZY LOGO V1.jpg' \
+            --exclude 'assets/jxxzy-logo-brand.mp4' \
+            --exclude 'assets/jxxzy-logo-brand.webm' \
+            --exclude 'assets/jxxzy-logo-brand-alpha.webm' \
+            --exclude 'assets/jxxzy-logo-wallpaper-mobile.webm' \
+            ./ _site/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
