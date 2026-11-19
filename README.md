@@ -1,16 +1,25 @@
-# JXXZY Racing Artist Experience V2.1 — UI/UX revision
+# JXXZY Racing Artist Experience V3
 
-Nine real pages plus 404. Independent motorsport-inspired identity; no BMW affiliation is claimed. Original music, photography, biography, riders, PDF and official channels are preserved. Based on V2 deployed commit `90490dc04bafd5359dd4708c3dcb9aca9514a843` (home, CSS and JS blob hashes confirmed against upstream).
+Independent motorsport-inspired JXXZY artist experience. Carbon Motorsport / Studio trim, original media, real multipage site, and a redesigned web EPK and downloadable PDF. No affiliation with BMW is claimed.
 
-## Upgrade using the existing repository
-Extract the ZIP **over the existing `presskit` checkout**, keeping all original files under `assets/` and `.git/`. This ZIP contains source and an asset manifest, not the 45 original binary assets. If starting separately, run `python hydrate_assets.py` (network required). The existing checkout already contains original files; no need to reinstall Python or Node on Android to push. GitHub Actions validates JS and checks all original assets before deployment.
+## Pages
+Home, Profile, Music, Shows, Gallery, Riders, Media, Booking, EPK, My Garage (collection), and 404.
 
-- `git add -A && git commit -m "fix: premium responsive JXXZY V2.1 UI UX" && git push origin main`
-- Watch GitHub Actions; do not use force push. The old manually dispatched deployment workflow, if present in the repository, should not be run concurrently.
-- Local optional validation: `python check_site.py --require-assets`, `node --check assets/racing.js`, `python -m http.server 4173`.
+## Experience
+- Responsive navbar, mobile quick-access dock, active page state, keyboard-friendly global search and command palette.
+- Carbon Motorsport and Studio visual trim; motion pause and reduced-motion support.
+- 28 new CSS keyframe definitions in experience.css, including dedicated EPK animations. Existing base CSS remains.
+- 14 SoundCloud tracks and 8 YouTube sets; platform filter, live search, sort, list/grid view, random discovery, click-to-load player modal and share.
+- My Garage local saved collection; photo categories, image viewer and keyboard navigation.
+- Booking brief preview and completion indicator; handoff to WhatsApp or email, no automatic sending.
+- Rider checklist, promoter assets, EPK chapter navigation and print styling.
+- New 15-page PDF (A4): biography, genres, set journey, linked catalog, selected appearances, event formats, riders, production checklist, promoter copy, asset links, brand and booking. The PDF uses original verified source text and typographic design, with official photo links instead of embedded photos because binary image downloads were unavailable. The old PDF is not deleted from the repository.
 
-## Changes
-New navigation, CTA hierarchy, controlled type scale, mobile-first hero, gallery next/previous and keyboard, track search/filters and empty state, EPK table of contents, safer booking form, same-origin media, reduced-motion, pause on hidden tab/out of view, stricter deployment validation. Original PDF remains unchanged. Booking hands off to WhatsApp/email; it does not submit automatically.
+## Update existing repo (Termux)
+Download and extract this ZIP into the existing clean checkout `~/presskit` on main. Retain original assets. Commit and push. Python and Node are not required on the phone; the Pages workflow validates source and original assets server-side before deployment. Do not force push.
 
-## Verification and limits
-See `AUDIT_V2_1.md` and `VERIFICATION.txt`. Browser tests used Chromium with inlined original page markup, CSS and JS, substituted image geometry and fallback fonts, blocked external connections, no real media. Live website, Safari/iOS and actual artwork cropping, external playback, real booking delivery and final PDF rendering require deployment/device verification. No push was performed from this environment.
+## Local development
+`python hydrate_assets.py` to restore missing original assets (requires internet); `python check_site.py --require-assets` to validate. `python -m http.server 4173` for local preview. Node syntax: `node --check assets/racing.js`, `node --check assets/catalog.js`, `node --check assets/experience.js`.
+
+## Verification limits
+Chromium layout tests used inlined real HTML/CSS/JS with substituted local image geometry, fallback fonts, blocked external requests and mocked localStorage. No real photo/video render, third-party player delivery, live booking delivery, actual Safari/iOS or production deployment was verified. PDF rendered and visually inspected in Poppler. Source package contains new PDF and code but not original multimedia binaries; retain existing repo assets. See VERIFICATION.txt. No remote push performed.

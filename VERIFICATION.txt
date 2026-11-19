@@ -1,13 +1,5 @@
-Chromium layout regression: 81 width/page combinations; 0 layout issues and 0 JS errors. Five interaction groups passed. Inline HTML/CSS/JS, synthetic media geometry and fallback fonts only; no network playback or live deployment verified. Static check passed; original binary assets must be retained from existing repository.
-{
-  "layout_checks": 81,
-  "layout_issues": [],
-  "js_errors": [],
-  "interactions": [
-    "mobile menu open/Escape",
-    "platform filters 8/14 + title search + empty state",
-    "music player modal opening/close (external playback not tested)",
-    "gallery next/previous keyboard, close",
-    "booking date minimum, contact required, invalid phone"
-  ]
-}
+JXXZY V3 Racing Experience / 2026
+Static: 11 HTML pages (10 functional pages + 404), 560 local references checked, zero reference/duplicate ID errors in source-package mode. All three JavaScript syntax checks passed. Missing original binary assets: 44; these are retained in the existing Git repository or restored by hydrate_assets.py. Strict original asset verification must pass on GitHub Actions.
+Browser smoke: 90 page/viewport combinations (10 pages at 320, 360, 390, 430, 768, 900, 1024, 1440, 1920 px), zero detected document overflow, heading clipping or nav overflow; zero JS exceptions in the layout test. Nine interaction groups passed: mobile menu, search palette, garage save/remove, music filter/sort/list/player modal, gallery filter/keyboard, booking preview, rider checklist, visual trim, EPK contents/media links/print trigger. Tests used inlined HTML/CSS/JS with substituted image geometry, no actual external traffic, fallback fonts and mocked browser storage. Tests were not a live deployment or actual device test.
+PDF: 15 A4 pages, 45 clickable links, 15 bookmarks, all pages contain searchable text; rendered and visually inspected all 15 pages. Typographic design uses web brand colors; actual logo and photos are linked instead of embedded due to inaccessible binary downloads. Links and QR codes point to official URLs; external delivery not verified.
+No remote push from the assistant; use existing Termux clone to publish.

@@ -21,6 +21,9 @@ jobs:
       - name: Validate source
         run: |
           node --check assets/racing.js
+          node --check assets/catalog.js
+          node --check assets/experience.js
+          test -s assets/JXXZY_PRESSKIT_2026_RACING_V3.pdf
           python3 hydrate_assets.py
           python3 check_site.py --require-assets
       - uses: actions/configure-pages@v5
