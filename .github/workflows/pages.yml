@@ -1,4 +1,4 @@
-name: Deploy JXXZY to GitHub Pages
+name: Deploy JXXZY racing site
 on:
   push:
     branches: [main]
@@ -12,38 +12,24 @@ concurrency:
   cancel-in-progress: true
 jobs:
   deploy:
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - name: Verify deployment payload
+      - name: Validate source
         run: |
-          test -f index.html
-          test -f epk.html
-          test -f assets/jxxzy-logo-navbar-alpha.webm
-          test -f assets/JXXZY_PRESSKIT_2026_PERFORMANCE_PHOTO_FINAL.pdf
-      - name: Prepare public site
+          node --check assets/racing.js
+          python3 hydrate_assets.py
+          python3 check_site.py
+      - uses: actions/configure-pages@v5
+      - name: Stage site
         run: |
           mkdir _site
-          rsync -a \
-            --exclude '.git/' \
-            --exclude '.github/' \
-            --exclude '.vscode/' \
-            --exclude '_site/' \
-            --exclude 'README.md' \
-            --exclude 'assets/*.dxv' \
-            --exclude 'assets/JXXZY LOGO V1.jpg' \
-            --exclude 'assets/jxxzy-logo-brand.mp4' \
-            --exclude 'assets/jxxzy-logo-brand.webm' \
-            --exclude 'assets/jxxzy-logo-brand-alpha.webm' \
-            --exclude 'assets/jxxzy-logo-wallpaper-mobile.webm' \
-            ./ _site/
+          rsync -a --exclude .git --exclude .github --exclude _site --exclude '*.py' --exclude '*.bat' --exclude '*.md' --exclude '*.dxv' ./ _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
-      - name: Deploy
+      - uses: actions/deploy-pages@v4
         id: deployment
-        uses: actions/deploy-pages@v4
