@@ -1,1 +1,13 @@
-Static verification: 10 HTML documents (9 pages + 404); 331 local references checked; 0 static errors. JavaScript syntax and Python syntax passed. Original binary media not bundled: 0/45 assets locally available; populate with hydrate_assets.py or preserve original assets folder. Browser smoke test blocked by environment (ERR_BLOCKED_BY_ADMINISTRATOR); live playback and visual verification not completed. No GitHub commit or deployment.
+Chromium layout regression: 81 width/page combinations; 0 layout issues and 0 JS errors. Five interaction groups passed. Inline HTML/CSS/JS, synthetic media geometry and fallback fonts only; no network playback or live deployment verified. Static check passed; original binary assets must be retained from existing repository.
+{
+  "layout_checks": 81,
+  "layout_issues": [],
+  "js_errors": [],
+  "interactions": [
+    "mobile menu open/Escape",
+    "platform filters 8/14 + title search + empty state",
+    "music player modal opening/close (external playback not tested)",
+    "gallery next/previous keyboard, close",
+    "booking date minimum, contact required, invalid phone"
+  ]
+}
