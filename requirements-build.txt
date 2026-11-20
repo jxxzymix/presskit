@@ -1,0 +1,5 @@
+reportlab==4.4.9
+Pillow==12.3.0
+PyMuPDF==1.26.7
+playwright==1.57.0
+beautifulsoup4==4.14.3

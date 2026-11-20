@@ -1,8 +1,9 @@
-name: Deploy JXXZY racing site
+name: Deploy JXXZY Signature Motorsport
 on:
   push:
     branches: [main]
   workflow_dispatch:
+  workflow_call:
 permissions:
   contents: read
   pages: write
@@ -18,19 +19,42 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Validate source
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install deterministic build dependencies
+        run: python -m pip install -r requirements-build.txt
+      - name: Verify original assets and build final photo EPKs
         run: |
-          node --check assets/racing.js
+          python hydrate_assets.py
+          python tools/prepare_site.py
+          python tools/build_epk.py
+          python tools/verify_pdf.py
+          python check_site.py --require-assets
           node --check assets/catalog.js
-          node --check assets/experience.js
-          test -s assets/JXXZY_PRESSKIT_2026_RACING_V3.pdf
-          python3 hydrate_assets.py
-          python3 check_site.py --require-assets
-      - uses: actions/configure-pages@v5
-      - name: Stage site
+          node --check assets/signature.js
+          node --check sw.js
+      - name: Install Chromium
+        run: python -m playwright install --with-deps chromium
+      - name: Browser gates using original repository assets
+        run: FULL_TEST=1 python tests/browser.py --real-assets
+      - name: Upload finished EPK PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: JXXZY-V4-Final-EPK
+          path: |
+            assets/JXXZY_PRESSKIT_2026_RACING_V4.pdf
+            assets/JXXZY_QUICK_EPK_V4.pdf
+      - name: Stage verified site
         run: |
           mkdir _site
-          rsync -a --exclude .git --exclude .github --exclude _site --exclude '*.py' --exclude '*.bat' --exclude '*.md' --exclude '*.dxv' ./ _site/
+          cp *.html manifest.webmanifest sitemap.xml robots.txt sw.js .nojekyll _site/
+          mkdir _site/assets
+          python tools/stage_assets.py _site/assets
+      - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

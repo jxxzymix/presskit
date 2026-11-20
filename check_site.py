@@ -29,6 +29,9 @@ for name,d in docs.items():
         count+=1;target=path or name
         if not (root/target).exists() and not (not strict and target.startswith('assets/') and target[7:] in assets):errors.append(name+': missing '+target)
         if u.fragment and target in docs and unquote(u.fragment) not in docs[target].ids:errors.append(name+': missing '+ref)
+for filename in ['racing.css','experience.css','signature.css']:
+    for ref in re.findall(r'url\([\'\"]?([^\)\'\"]+)[\'\"]?\)',(root/'assets'/filename).read_text()):
+        if not urlsplit(ref).scheme and not (root/'assets'/ref).exists() and not (not strict and ref in assets):errors.append(filename+': missing '+ref)
 missing=[p for p in sorted(assets) if not (root/'assets'/p).is_file() or not (root/'assets'/p).stat().st_size]
 if strict:errors.extend('Missing original asset: '+x for x in missing)
 print(len(docs),'HTML pages;',count,'local references checked;',len(errors),'errors')

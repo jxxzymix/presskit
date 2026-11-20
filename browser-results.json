@@ -1,0 +1,18 @@
+{
+  "layout_combinations": 242,
+  "layout_failures": [],
+  "js_errors": [],
+  "interaction_groups": [
+    "music filter/search",
+    "garage save/remove",
+    "player/queue controls, not streaming",
+    "filtered gallery counter",
+    "booking wizard and validation",
+    "visual and navigation language preferences",
+    "rider checklist",
+    "live filter",
+    "EPK print restores filtered catalog",
+    "mobile menu and command results"
+  ],
+  "scope": "Chromium set_content, placeholder asset geometry, in-memory storage, blocked real navigation / streaming"
+}

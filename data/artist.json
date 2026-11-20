@@ -1,0 +1,97 @@
+{
+  "name": "JXXZY",
+  "tagline": "Fun. Fly. Enjoy.",
+  "bio_id": "JXXZY adalah DJ, producer, dan music editor asal Indonesia dengan karakter set high-energy dan genre-fluid. Musiknya bergerak melalui Dutch, Jungle Dutch, Breakbeat, Breakfunk, Techno, Indonesian Bounce, Baile Funk, Brazilian Funk, Bolha, serta crossover club sounds. Personal edits, mashups, bootlegs, dan live reworks menjadi bagian penting dari identitas performanya, dengan fokus pada flow, respons crowd, dan momentum dancefloor.",
+  "bio_en": "JXXZY is an Indonesia-based DJ, producer, and music editor with a high-energy, genre-fluid performance style. His sets move through Dutch, Jungle Dutch, Breakbeat, Breakfunk, Techno, Indonesian Bounce, Baile Funk, Brazilian Funk, Bolha, and crossover club sounds. Personal edits, mashups, bootlegs, and live reworks are central to his identity, with an emphasis on flow, crowd response, and dancefloor momentum.",
+  "short_bio": "JXXZY — Indonesia-based DJ / producer delivering high-energy, genre-fluid club sets with exclusive edits and crowd-driven selection.",
+  "mc": "MAKE SOME NOISE FOR — JXXZY. FUN. FLY. ENJOY.",
+  "events": [
+    {
+      "name": "FYNE",
+      "description": "Jakarta / Club"
+    },
+    {
+      "name": "CONCLAVE",
+      "description": "Bandung / Club"
+    },
+    {
+      "name": "SETERAS",
+      "description": "Jakarta / House party"
+    },
+    {
+      "name": "UMANIARA",
+      "description": "Jakarta / House party"
+    },
+    {
+      "name": "WHITERABIT",
+      "description": "Jakarta / Club"
+    },
+    {
+      "name": "ROOFTOP",
+      "description": "Cimahi / Rooftop event"
+    },
+    {
+      "name": "WEDDING PARTY",
+      "description": "Private event / Wedding"
+    }
+  ],
+  "photos": [
+    {
+      "caption": "Crowd atmosphere",
+      "src": "assets/press-crowd-main.webp",
+      "category": "live"
+    },
+    {
+      "caption": "Crowd energy",
+      "src": "assets/press-crowd-close.webp",
+      "category": "live"
+    },
+    {
+      "caption": "Room movement",
+      "src": "assets/press-crowd-room.webp",
+      "category": "live"
+    },
+    {
+      "caption": "FYNE Jakarta",
+      "src": "assets/press-live-fyne.webp",
+      "category": "live"
+    },
+    {
+      "caption": "Live identity",
+      "src": "assets/press-live-logo.webp",
+      "category": "live"
+    },
+    {
+      "caption": "DJ booth",
+      "src": "assets/press-live-booth.webp",
+      "category": "live"
+    },
+    {
+      "caption": "Official portrait",
+      "src": "assets/press-portrait-cover.webp",
+      "category": "portrait"
+    },
+    {
+      "caption": "Front portrait",
+      "src": "assets/press-portrait-front.webp",
+      "category": "portrait"
+    },
+    {
+      "caption": "Artist action",
+      "src": "assets/press-portrait-action.webp",
+      "category": "portrait"
+    },
+    {
+      "caption": "Event portrait",
+      "src": "assets/press-portrait-event.webp",
+      "category": "portrait"
+    },
+    {
+      "caption": "Back portrait",
+      "src": "assets/press-portrait-back.webp",
+      "category": "portrait"
+    }
+  ],
+  "booking_email": "jxxzyshn@gmail.com",
+  "booking_wa": "6285892904834"
+}
