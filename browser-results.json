@@ -14,5 +14,5 @@
     "EPK print restores filtered catalog",
     "mobile menu and command results"
   ],
-  "scope": "Chromium set_content, placeholder asset geometry, in-memory storage, blocked real navigation / streaming"
+  "scope": "V4.1: 242 layout checks logged in first Chromium execution; 10 interaction groups rerun in separate execution; placeholder image geometry, mocked local storage, actual external streaming and real URL navigation not verified."
 }

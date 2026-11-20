@@ -1,4 +1,4 @@
-name: Deploy JXXZY Signature Motorsport
+name: Deploy JXXZY Signature Racing
 on:
   push:
     branches: [main]
@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -37,10 +37,7 @@ jobs:
           node --check assets/catalog.js
           node --check assets/signature.js
           node --check sw.js
-      - name: Install Chromium
-        run: python -m playwright install --with-deps chromium
-      - name: Browser gates using original repository assets
-        run: FULL_TEST=1 python tests/browser.py --real-assets
+          python tools/check_brand.py --production
       - name: Upload finished EPK PDFs
         uses: actions/upload-artifact@v4
         with:
@@ -48,6 +45,10 @@ jobs:
           path: |
             assets/JXXZY_PRESSKIT_2026_RACING_V4.pdf
             assets/JXXZY_QUICK_EPK_V4.pdf
+      - name: Install Chromium
+        run: python -m playwright install --with-deps chromium
+      - name: Browser gates using original repository assets
+        run: FULL_TEST=1 python tests/browser.py --real-assets
       - name: Stage verified site
         run: |
           mkdir _site

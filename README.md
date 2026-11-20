@@ -1,15 +1,15 @@
-# JXXZY V4 — Signature Motorsport
+# JXXZY V4.1 — Signature Racing
 
-Independent artist experience inspired by motorsport, without affiliation with BMW. This update is designed as an overlay on the existing `jxxzymix/presskit` checkout; preserve its original binary assets. The 2026 V3 source was the baseline (`6e904a0`).
+Independent artist experience with a racing-inspired visual identity. This update is designed as an overlay on the existing `jxxzymix/presskit` checkout; preserve its original binary assets. The 2026 V3 source was the baseline (`6e904a0`).
 
 ## Apply from Termux
 
 ```sh
 cd "$HOME/presskit" && git pull --ff-only origin main
-unzip -o "$HOME/storage/downloads/JXXZY_Racing_V4_Signature_Motorsport.zip"
+unzip -o "$HOME/storage/downloads/JXXZY_V4_1_Signature_Racing.zip"
 git add -A
 git status
-git commit -m "feat: Signature Motorsport V4 artist experience and photo EPK pipeline"
+git commit -m "feat: Signature Racing V4 artist experience and photo EPK pipeline"
 git push -u origin main
 ```
 
@@ -32,4 +32,7 @@ No Python or Node install is required on the phone. GitHub Actions installs buil
 
 ## Evidence and limitations
 
-See `AUDIT_V4.md` and `browser-results.json`. Local Chromium proof used actual candidate HTML/CSS/JS with image substitution and in-memory storage because browser navigation was blocked. It did not verify real hosting, external streaming, actual photos or OS-level device layout. CI must pass with original assets and real URL routing before deployment. PDF proof has placeholder frames; production gate refuses proofs or missing original images. Real-device Safari, Lighthouse, axe, external URL availability, full language translation, full catalog metadata and backend booking are still outstanding.
+See `AUDIT_V4_1.md` and `browser-results.json`. Local Chromium proof used actual candidate HTML/CSS/JS with image substitution and in-memory storage because browser navigation was blocked. It did not verify real hosting, external streaming, actual photos or OS-level device layout. CI must pass with original assets and real URL routing before deployment. PDF proof has placeholder frames; production gate refuses proofs or missing original images. Real-device Safari, Lighthouse, axe, external URL availability, full language translation, full catalog metadata and backend booking are still outstanding.
+
+## V4.1 deployment correction
+Runner is pinned to Ubuntu 24.04 for the pinned browser package; verified photo PDFs are uploaded before the browser installation gate. Source and current PDF naming are scanned before deployment. Original binary assets are intentionally retained from the existing checkout.
